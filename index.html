@@ -7,9 +7,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- PayPal SDK (REQUIRED) -->
     <script src="https://www.paypalobjects.com/ncp/cart/cart.js" data-merchant-id="X6LSTQMQDUYDL"></script>
+        <!-- PayPal SDK (DEBUG) -->
     <script>
   console.log("PayPal cartPaypal object:", cartPaypal);
   console.log("PayPal cartPaypal keys:", Object.keys(cartPaypal));
+        console.log("AddToCart function:");
+  console.log(cartPaypal.AddToCart.toString());
+  console.log("Cart function:");
+  console.log(cartPaypal.Cart.toString());
 </script>
 
     <style>
