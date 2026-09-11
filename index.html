@@ -16,6 +16,31 @@
   console.log("Cart function:");
   console.log(cartPaypal.Cart.toString());
 </script>
+    <script>
+  const originalFetch = window.fetch;
+
+  window.fetch = async function(...args) {
+
+    if (
+      args[0] &&
+      String(args[0]).includes("/ncp/api/")
+    ) {
+      console.log("PAYPAL API REQUEST:", args[0]);
+    }
+
+    const response =
+      await originalFetch.apply(this, args);
+
+    return response;
+  };
+</script>
+
+<script
+  src="https://www.paypalobjects.com/ncp/cart/cart.js"
+  data-merchant-id="X6LSTQMQDUYDL">
+</script>
+
+    <!-- END PayPal SDK (DEBUG) -->
 
     <style>
       body {
