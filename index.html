@@ -9,17 +9,25 @@
     <script src="https://www.paypalobjects.com/ncp/cart/cart.js" data-merchant-id="X6LSTQMQDUYDL"></script>
         <!-- PayPal SDK (DEBUG) -->
     <script>
+(function waitForPayPal() {
+  if (typeof cartPaypal === "undefined") {
+    setTimeout(waitForPayPal, 100);
+    return;
+  }
+
+  console.log("========== PAYPAL DEBUG ==========");
+
   console.log("PayPal cartPaypal object:", cartPaypal);
   console.log("PayPal cartPaypal keys:", Object.keys(cartPaypal));
-        console.log("AddToCart function:");
-  console.log("cartPaypal:", cartPaypal);
 
-  console.log("=== AddToCart ===");
+  console.log("========== AddToCart ==========");
   console.log(cartPaypal.AddToCart.toString());
 
-  console.log("=== Cart ===");
+  console.log("========== Cart ==========");
   console.log(cartPaypal.Cart.toString());
-      
+
+  console.log("========== END PAYPAL DEBUG ==========");
+})();
 </script>
 <script>
   const originalFetch = window.fetch;
