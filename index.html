@@ -7,67 +7,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- PayPal SDK (REQUIRED) -->
     <script src="https://www.paypalobjects.com/ncp/cart/cart.js" data-merchant-id="X6LSTQMQDUYDL"></script>
-        <!-- PayPal SDK (DEBUG) -->
-    <script>
-(function waitForPayPal() {
-  if (typeof cartPaypal === "undefined") {
-    setTimeout(waitForPayPal, 100);
-    return;
-  }
-
-  console.log("========== PAYPAL DEBUG ==========");
-
-  console.log("PayPal cartPaypal object:", cartPaypal);
-  console.log("PayPal cartPaypal keys:", Object.keys(cartPaypal));
-
-  console.log("========== AddToCart ==========");
-  console.log(cartPaypal.AddToCart.toString());
-
-  console.log("========== Cart ==========");
-  console.log(cartPaypal.Cart.toString());
-
-  console.log("========== END PAYPAL DEBUG ==========");
-})();
-</script>
-<script>
-  const originalFetch = window.fetch;
-
-  window.fetch = async function(...args) {
-
-    const url = String(args[0]);
-
-    const response =
-      await originalFetch.apply(this, args);
-
-    if (url.includes("/ncp/api/cart/form-fields/")) {
-
-      console.log("PAYPAL API RESPONSE:", url);
-      console.log("HTTP STATUS:", response.status);
-
-      // Clone it so PayPal can still consume the original response.
-      const clone = response.clone();
-
-      try {
-        const data = await clone.json();
-
-        console.log("PAYPAL FORM FIELDS:", data);
-        console.log("PAYPAL HTML:", data.html);
-        console.log("PAYPAL HTML SCRIPT:", data.html_script);
-
-      } catch (error) {
-        console.log(
-          "Could not decode PayPal response as JSON:",
-          error
-        );
-      }
-    }
-
-    return response;
-  };
-</script>
-
-    <!-- END PayPal SDK (DEBUG) -->
-
     <style>
       body {
         font-family: "Helvetica Neue", Arial, sans-serif;
